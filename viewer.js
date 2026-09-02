@@ -5,7 +5,7 @@
 
 import {
   auth, db, googleProvider,
-  createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup,
+  createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, getRedirectResult,
   sendPasswordResetEmail, onAuthStateChanged, updateProfile,
   doc, getDoc, setDoc, collection, query, where, orderBy, limit, getDocs
 } from "./firebase-config.js";
