@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Knowbit.in — A Social Network for Ideas</title>
+<meta name="description" content="Knowbit is a social network for ideas — read, discover and discuss text-only posts from writers and thinkers.">
+<link rel="icon" href="photo/logo.png" type="image/png">
+<link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#/" class="brand" aria-label="Knowbit home">
+      <img src="photo/logo.png" alt="" class="brand-mark">
+      <span class="brand-word">Knowbit<span class="brand-dot">.in</span></span>
+    </a>
+
+    <form class="searchbox" id="searchForm" role="search">
+      <svg viewBox="0 0 20 20" class="searchbox-icon" aria-hidden="true"><path d="M13.5 12.5 18 17M15 8.5A6.5 6.5 0 1 1 2 8.5a6.5 6.5 0 0 1 13 0Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input id="searchInput" type="text" placeholder="Search posts, people, topics" aria-label="Search Knowbit">
+    </form>
+
+    <nav class="topbar-actions">
+      <button class="btn btn-ghost" id="loginBtn" type="button">Log in</button>
+      <button class="btn btn-primary" id="signupBtn" type="button">Sign up</button>
+    </nav>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="rail" aria-label="Primary">
+    <nav class="rail-nav">
+      <a href="#/" class="rail-link" data-route="home">
+        <svg viewBox="0 0 24 24" class="rail-icon"><path d="M4 11.5 12 4l8 7.5M6 10v9h5v-5.5h2V19h5v-9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Home</span>
+      </a>
+      <a href="#/explore" class="rail-link" data-route="explore">
+        <svg viewBox="0 0 24 24" class="rail-icon"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m14.6 9.4-2 5.2-5.2 2 2-5.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+        <span>Explore</span>
+      </a>
+    </nav>
+
+    <div class="rail-topics">
+      <p class="rail-heading">Topics</p>
+      <div id="railTopics" class="rail-topic-list"></div>
+    </div>
+
+    <div class="rail-cta">
+      <p class="rail-cta-title">Have something to say?</p>
+      <p class="rail-cta-body">Join Knowbit to write, follow and take part in the conversation.</p>
+      <button class="btn btn-primary btn-block" id="railSignup" type="button">Create account</button>
+    </div>
+  </aside>
+
+  <main class="content" id="content" tabindex="-1"></main>
+
+  <aside class="side" id="side" aria-label="Discovery"></aside>
+</div>
+
+<nav class="bottomnav" aria-label="Primary">
+  <a href="#/" class="bottomnav-link" data-route="home">
+    <svg viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5M6 10v9h5v-5.5h2V19h5v-9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Home</span>
+  </a>
+  <a href="#/explore" class="bottomnav-link" data-route="explore">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m14.6 9.4-2 5.2-5.2 2 2-5.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+    <span>Explore</span>
+  </a>
+  <button class="bottomnav-link" id="bottomSignup" type="button">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    <span>Join</span>
+  </button>
+</nav>
+
+<div class="modal-layer hidden" id="modalLayer" aria-hidden="true">
+  <div class="modal-backdrop" data-close-modal></div>
+  <div class="modal-box" id="modalBox" role="dialog" aria-modal="true"></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="viewer.js"></script>
+</body>
+</html>
