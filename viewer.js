@@ -232,7 +232,7 @@ $("#railSignup").addEventListener("click", () => openAuthModal("signup"));
 $("#bottomSignup").addEventListener("click", () => openAuthModal("signup"));
 
 // If already signed in, sailing to index.html doesn't make sense — bounce to app.
-onAuthStateChanged(auth, user => { if (user) { /* stay silent: user may have just logged out mid-browse */ } });
+onAuthStateChanged(auth, user => { if (user) { window.location.href = "user.html"; } });
 getRedirectResult(auth).then(async cred => {
   if (!cred) return;
   await ensureUserDoc(cred.user);
