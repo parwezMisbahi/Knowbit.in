@@ -223,15 +223,7 @@ async function handleEmailAuth(e, isLogin){
 }
 
 async function handleGoogleAuth(){
-  try{
-    const cred = await signInWithPopup(auth, googleProvider);
-    await ensureUserDoc(cred.user);
-    closeModal();
-    toast("Welcome to Knowbit!");
-    setTimeout(() => { window.location.href = "user.html"; }, 500);
-  }catch(err){
-    toast(friendlyAuthError(err));
-  }
+  await signInWithRedirect(auth, googleProvider);
 }
 
 $("#loginBtn").addEventListener("click", () => openAuthModal("login"));
@@ -241,7 +233,12 @@ $("#bottomSignup").addEventListener("click", () => openAuthModal("signup"));
 
 // If already signed in, sailing to index.html doesn't make sense — bounce to app.
 onAuthStateChanged(auth, user => { if (user) { /* stay silent: user may have just logged out mid-browse */ } });
-
+getRedirectResult(auth).then(async cred => {
+  if (!cred) return;
+  await ensureUserDoc(cred.user);
+  toast("Welcome to Knowbit!");
+  setTimeout(() => { window.location.href = "user.html"; }, 500);
+}).catch(err => toast(friendlyAuthError(err)));
 /* ============================== data layer ============================== */
 
 async function fetchPublishedPosts(sortField = "createdAt", max = 20){
