@@ -310,9 +310,13 @@ async function fetchFollowingPosts(max = 30){
 async function fetchPostBySlug(slug){
   const q = query(collection(db, "posts"), where("slug", "==", slug), limit(1));
   const snap = await getDocs(q);
-  if (snap.empty) return null;
-  const d = snap.docs[0];
-  return { id: d.id, ...d.data() };
+  if (!snap.empty){
+    const d = snap.docs[0];
+    return { id: d.id, ...d.data() };
+  }
+  const direct = await getDoc(doc(db, "posts", slug)).catch(() => null);
+  return direct && direct.exists() ? { id: direct.id, ...direct.data() } : null;
+}
 }
 async function fetchPostsByAuthor(authorId, status, max = 40){
   const clauses = [where("authorId", "==", authorId)];
